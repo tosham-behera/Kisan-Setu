@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Book Cold Storage | Kisan Setu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Kisan Setu &copy;</h1>
+        <p>Direct Agriculture Intelligence &amp; Market Access Portal</p>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#mandi-section">Mandi Prices</a></li>
+                <li><a href="index.html#crop-profiles">Crop Profiles</a></li>
+                <li><a href="https://pmkisan.gov.in/">Schemes &amp; Directory</a></li>
+                <li><a href="request.html">Book Cold Storage</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <article class="content-card">
+            <h2>Book Cold Storage Space</h2>
+            <p>
+                Reserve cold-storage capacity for your produce ahead of harvest. Fill in the quantity,
+                the duration you need the space for, and your district &mdash; our team confirms
+                availability at the nearest facility within 24 hours.
+            </p>
+        </article>
+
+        <section id="booking-form" class="content-card">
+            <form action="#" method="post" class="cold-storage-form">
+                <fieldset>
+                    <legend>Cold Storage Requirement</legend>
+
+                    <div class="form-row">
+                        <label for="produce-type">Produce Type</label>
+                        <select id="produce-type" name="produce-type" required>
+                            <option value="">Select produce</option>
+                            <option value="paddy">Paddy</option>
+                            <option value="sugarcane">Sugarcane</option>
+                            <option value="groundnut">Groundnut</option>
+                            <option value="vegetables">Vegetables</option>
+                            <option value="fruits">Fruits</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" min="1" step="0.1" placeholder="e.g. 50" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="unit">Unit</label>
+                        <select id="unit" name="unit" required>
+                            <option value="quintal">Quintal</option>
+                            <option value="tonne">Tonne</option>
+                            <option value="kg">Kilogram</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="duration">Duration Needed (days)</label>
+                        <input type="number" id="duration" name="duration" min="1" placeholder="e.g. 15" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="start-date">Storage Start Date</label>
+                        <input type="date" id="start-date" name="start-date" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="district">District</label>
+                        <select id="district" name="district" required>
+                            <option value="">Select district</option>
+                            <option value="trichy">Trichy</option>
+                            <option value="thanjavur">Thanjavur</option>
+                            <option value="salem">Salem</option>
+                            <option value="cuddalore">Cuddalore</option>
+                            <option value="madurai">Madurai</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Contact Details</legend>
+
+                    <div class="form-row">
+                        <label for="farmer-name">Full Name</label>
+                        <input type="text" id="farmer-name" name="farmer-name" placeholder="Your name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="mobile">Mobile Number</label>
+                        <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="10-digit mobile number" required>
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="submit-btn">Request Cold Storage Slot</button>
+            </form>
+        </section>
+    </main>
+
+    <a href="#" id="back-to-top">&uarr; Top</a>
+
+    <footer class="site-footer">
+        <p>
+            &copy; 2026 Kisan Setu&trade;. All rights reserved. |
+            Registered mark &reg; Kisan Setu Agricultural Services
+        </p>
+        <p><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="hub.html">Schemes &amp; Directory</a></p>
+    </footer>
+</body>
+</html>
