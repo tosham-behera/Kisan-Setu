@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Kisan Setu | Direct Agriculture Intelligence &amp; Market Access Portal</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -32,6 +33,7 @@
                 pesticide spraying.
             </p>
             <p>Current field temperature: 31&deg;C &nbsp;|&nbsp; Humidity: 78% &nbsp;|&nbsp; Wind: 12 km/h</p>
+            <p id="weather-status">Weather data is being refreshed.</p>
         </section>
 
         <article class="content-card">
@@ -91,9 +93,6 @@
                     <td>5550</td>
                     <td>5300</td>
                     <td>5700</td>
-                </tr>
-                <tr>
-                    <td colspan="7">Prices sourced from district mandi committees &mdash; last verified today.</td>
                 </tr>
             </table>
         </section>
@@ -165,6 +164,7 @@
     <a href="#weather-alert" id="back-to-top">&uarr; Top</a>
 
     <footer class="site-footer">
+        <p id="last-updated">Last updated: loading...</p>
         <p>
             &copy; 2026 Kisan Setu&trade;. All rights reserved. |
             Registered mark &reg; Kisan Setu Agricultural Services |
