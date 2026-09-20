@@ -1,0 +1,352 @@
+:root {
+  --forest-green: #1f4d2c;
+  --leaf-green: #3c8047;
+  --earthy-amber: #c98a34;
+  --mint: #a9d6b8;
+  --soil-brown: #6b4a2f;
+  --cloud-white: #f6f8f1;
+  --card-white: #ffffff;
+  --ink: #223022;
+  --shadow-soft: 0 4px 14px rgba(31, 77, 44, 0.12);
+  --shadow-lift: 0 10px 24px rgba(31, 77, 44, 0.22);
+  --radius-md: 10px;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Work Sans', 'Segoe UI', Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--cloud-white);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--forest-green);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.4rem;
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  word-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: var(--soil-brown);
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 0.9rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, var(--forest-green), var(--leaf-green));
+  color: var(--cloud-white);
+  padding: 1.5rem 2rem 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.site-header h1,
+.site-header p {
+  color: var(--cloud-white);
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.site-header p {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.main-nav a {
+  color: var(--cloud-white);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-md);
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+.main-nav a:hover {
+  background-color: var(--earthy-amber);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.weather-banner {
+  background: linear-gradient(120deg, #c98a34 0%, #e0a857 50%, #c98a34 100%);
+  color: #2b1b05;
+  border: 2px solid var(--soil-brown);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-soft);
+  animation: pulse-alert 2.4s infinite alternate;
+}
+
+.weather-banner h2 {
+  color: #2b1b05;
+}
+
+.weather-status {
+  font-weight: 600;
+}
+
+@keyframes pulse-alert {
+  from {
+    box-shadow: 0 0 0 rgba(201, 138, 52, 0.4);
+    transform: scale(1);
+  }
+
+  to {
+    box-shadow: 0 0 22px rgba(201, 138, 52, 0.65);
+    transform: scale(1.015);
+  }
+}
+
+.content-card {
+  background-color: var(--card-white);
+  border: 1px solid rgba(31, 77, 44, 0.1);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.mandi-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-white);
+  box-shadow: var(--shadow-soft);
+  margin-top: 1rem;
+}
+
+.mandi-table th,
+.mandi-table td {
+  border: 1px solid rgba(31, 77, 44, 0.2);
+  padding: 0.7rem 0.9rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mandi-table th {
+  background-color: var(--forest-green);
+  color: var(--cloud-white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.82rem;
+}
+
+.mandi-table tr:nth-child(odd) td {
+  background-color: var(--cloud-white);
+}
+
+.crop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.crop-card {
+  background-color: var(--card-white);
+  border: 1px solid var(--mint);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  min-height: 180px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.crop-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: var(--shadow-lift);
+}
+
+.crop-card dl {
+  margin-top: 0.5rem;
+}
+
+.crop-card dt {
+  font-weight: 700;
+  color: var(--leaf-green);
+  margin-top: 0.5rem;
+}
+
+.crop-card dd {
+  margin-left: 1rem;
+}
+
+.gallery-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.gallery-row a {
+  display: inline-block;
+}
+
+.gallery-img {
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  object-fit: cover;
+}
+
+.booking-block {
+  margin-top: 2rem;
+}
+
+.cold-storage-form {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.cold-storage-form fieldset {
+  border: 1px solid rgba(31, 77, 44, 0.15);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+}
+
+.cold-storage-form legend {
+  padding: 0 0.5rem;
+  font-weight: 700;
+  color: var(--forest-green);
+}
+
+.form-row {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.form-row label {
+  font-weight: 600;
+  color: var(--forest-green);
+}
+
+.form-row input,
+.form-row select,
+.form-row button {
+  font: inherit;
+}
+
+.form-row input,
+.form-row select {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(31, 77, 44, 0.25);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.submit-btn {
+  border: none;
+  background: linear-gradient(135deg, var(--forest-green), var(--leaf-green));
+  color: white;
+  padding: 0.9rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.success-message {
+  color: var(--forest-green);
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  display: inline-block;
+  background: var(--forest-green);
+  color: white;
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow-soft);
+}
+
+.site-footer {
+  background: #eaf2e7;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .weather-banner,
+  .content-card {
+    padding: 1.25rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
