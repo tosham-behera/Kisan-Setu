@@ -310,6 +310,17 @@ img {
   margin-top: 0.5rem;
 }
 
+.error-message {
+  color: #b3261e;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 .back-to-top {
   position: fixed;
   right: 1.5rem;

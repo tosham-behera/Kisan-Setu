@@ -160,17 +160,65 @@ function App() {
     minute: '2-digit',
   });
 
+  // Today's date in YYYY-MM-DD format (local time) for the Start Date
+  // input's min attribute, so past dates cannot be selected in the picker.
+  // Backend validation still runs as a second protection layer.
+  const today = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [createdId, setCreatedId] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError('');
+    setSubmitted(false);
+    setCreatedId(null);
+
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          produceType: form.produceType,
+          quantity: Number(form.quantity),
+          unit: form.unit,
+          durationDays: Number(form.duration),
+          startDate: form.startDate,
+          district: form.district,
+          farmerName: form.farmerName,
+          mobile: form.mobile,
+        }),
+      });
+
+      if (!response.ok) {
+        const hint =
+          response.status >= 500
+            ? ' The Spring Boot backend may not be running on port 8080.'
+            : '';
+        throw new Error(`The server could not save your request (HTTP ${response.status}).${hint}`);
+      }
+
+      const savedBooking = await response.json();
+      setCreatedId(savedBooking.id);
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(
+        error.message === 'Failed to fetch'
+          ? 'Could not reach the server. Make sure the Spring Boot backend is running on port 8080.'
+          : error.message || 'Something went wrong. Please try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -309,6 +357,7 @@ function App() {
                   type="date"
                   id="startDate"
                   name="startDate"
+                  min={today}
                   value={form.startDate}
                   onChange={handleChange}
                   required
@@ -359,8 +408,16 @@ function App() {
               </div>
             </fieldset>
 
-            <button type="submit" className="submit-btn">Request Cold Storage Slot</button>
-            {submitted && <p className="success-message">Your cold storage request has been recorded successfully.</p>}
+            <button type="submit" className="submit-btn" disabled={submitting}>
+              {submitting ? 'Submitting\u2026' : 'Request Cold Storage Slot'}
+            </button>
+            {submitted && (
+              <p className="success-message">
+                Your cold storage request has been recorded successfully.
+                {createdId ? ` (Booking ID: ${createdId})` : ''}
+              </p>
+            )}
+            {submitError && <p className="error-message">{submitError}</p>}
           </form>
         </section>
 
