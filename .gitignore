@@ -8,7 +8,6 @@ backend/target
 .freebuff/
 .idea/
 *.iml
-docs/screenshots/
 
 # Local secrets / environment files - never commit credentials
 .env
