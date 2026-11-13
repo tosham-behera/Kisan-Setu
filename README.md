@@ -62,23 +62,23 @@ Successful requests receive a generated booking ID and are stored with a `PENDIN
 
 ### Integrated Kisan Setu home page
 
-![Figure 2.10: Integrated Kisan Setu Home Page](docs/screenshots/figure-2-10-home.png)
+![Figure 2.10: Integrated Kisan Setu Home Page](screenshots/figure-2-10-home.png)
 
 ### Cold-storage booking form
 
-![Figure 2.11: Cold-Storage Booking Form](docs/screenshots/figure-2-11-cold-storage-booking-form.png)
+![Figure 2.11: Cold-Storage Booking Form](screenshots/figure-2-11-cold-storage-booking-form.png)
 
 ### Booking form submission
 
-![Figure 2.12: Booking Form Submission](docs/screenshots/figure-2-12-booking-form-submission.png)
+![Figure 2.12: Booking Form Submission](screenshots/figure-2-12-booking-form-submission.png)
 
 ### API request and response
 
-![Figure 2.13: API Request and Response](docs/screenshots/figure-2-13-api-request-response.png)
+![Figure 2.13: API Request and Response](screenshots/figure-2-13-api-request-response.png)
 
 ### Booking data persisted in MySQL
 
-![Figure 2.14: Booking Data in MySQL](docs/screenshots/figure-2-14-booking-data-mysql.png)
+![Figure 2.14: Booking Data in MySQL](screenshots/figure-2-14-booking-data-mysql.png)
 
 ## Getting started
 
