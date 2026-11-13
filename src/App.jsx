@@ -75,16 +75,17 @@ const initialForm = {
 function WeatherAlertBanner({ title, message, temp, humidity, wind, time }) {
   return (
     <section id="weather-alert" className="weather-banner">
-      <h2>{title}</h2>
-      <p>
-        <strong>Heavy rainfall warning:</strong> <em>{message}</em> expected across
-        Thanjavur, Trichy, and Cuddalore districts in the next 48 hours. Farmers are advised to delay
-        pesticide spraying.
-      </p>
-      <p>
-        Current field temperature: {temp} &nbsp;|&nbsp; Humidity: {humidity}% &nbsp;|&nbsp; Wind: {wind} km/h
-      </p>
-      <p className="weather-status">Weather and mandi data refreshed at {time}.</p>
+      <div className="weather-copy">
+        <span className="eyebrow">Field advisory / Tamil Nadu</span>
+        <h2>{title}</h2>
+        <p><strong>Heavy rainfall warning.</strong> {message} expected across Thanjavur, Trichy, and Cuddalore districts in the next 48 hours. Farmers are advised to delay pesticide spraying.</p>
+        <p className="weather-status">Weather and mandi data refreshed at {time}.</p>
+      </div>
+      <div className="weather-readings" aria-label="Current weather">
+        <span className="weather-symbol" aria-hidden="true">☂</span>
+        <div className="temperature">{temp}<span>Field temperature</span></div>
+        <div className="weather-detail"><span>Humidity <b>{humidity}%</b></span><span>Wind <b>{wind} km/h</b></span></div>
+      </div>
     </section>
   );
 }
@@ -128,7 +129,7 @@ function MandiTable({ rows }) {
 function CropProfileCard({ crop }) {
   return (
     <div className="crop-card" key={crop.title}>
-      <h3>{crop.title}</h3>
+      <div className="crop-heading"><span className="crop-number" aria-hidden="true">{crop.title.startsWith('Paddy') ? '01' : '02'}</span><h3>{crop.title.split(' (')[0]}<em>{crop.title.split(' (')[1].replace(')', '')}</em></h3></div>
       <dl>
         <dt>Season</dt>
         <dd>{crop.season}</dd>
@@ -223,9 +224,13 @@ function App() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <div className="utility-bar"><span>Rooted in the field. Connected to the market.</span><span>Tamil Nadu · Agriculture &amp; market access</span></div>
       <header className="site-header">
-        <h1>Kisan Setu</h1>
-        <p>Direct Agriculture Intelligence &amp; Market Access Portal</p>
+        <a className="brand" href="#main-content" aria-label="Kisan Setu home">
+          <svg className="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 32V17M20 24C8 25 6 17 6 10c10 0 14 5 14 14ZM20 18C20 8 27 5 34 5c0 8-4 14-14 13Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/><path d="M8 34h24" stroke="currentColor" strokeWidth="2"/></svg>
+          <span>Kisan Setu<small>From soil to opportunity</small></span>
+        </a>
 
         <nav className="main-nav" aria-label="Main navigation">
           <ul>
@@ -240,7 +245,17 @@ function App() {
         </nav>
       </header>
 
-      <main className="container">
+      <main id="main-content" className="container">
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <span className="eyebrow">Your farming companion</span>
+            <h1 id="hero-title">Better decisions.<br />Stronger <em>harvests.</em></h1>
+            <p>From the first sowing to the right market — find the information and support your farm needs, all in one place.</p>
+            <div className="hero-actions"><a className="primary-link" href="#mandi-section">Explore mandi prices <span aria-hidden="true">↗</span></a><a className="text-link" href="#booking-form">Book cold storage <span aria-hidden="true">→</span></a></div>
+            <div className="hero-note"><span aria-hidden="true">↳</span> Local knowledge. Growing possibilities.</div>
+          </div>
+          <div className="hero-photo"><img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=85" alt="Sunlight falling across cultivated green fields" /><span className="photo-label">THE LAND WE GROW WITH <span>01 / Field notes</span></span></div>
+        </section>
         <WeatherAlertBanner
           title="Live Weather Alert"
           message="Moderate to heavy showers"
@@ -250,8 +265,8 @@ function App() {
           time={weatherTime}
         />
 
-        <article className="content-card">
-          <h2>About Kisan Setu</h2>
+        <article className="about-section">
+          <div><span className="eyebrow">A bridge for every farmer</span><h2>About Kisan Setu</h2></div>
           <p>
             Kisan Setu is a direct market-access portal connecting farmers to real time mandi prices,
             government schemes, soil testing infrastructure, and agricultural best practices.
@@ -263,13 +278,12 @@ function App() {
         </article>
 
         <section id="mandi-section">
-          <h2>Mandi Price Comparison — Tamil Nadu Districts</h2>
-          <p>Prices quoted in ₹ (INR) per quintal, updated daily.</p>
-          <MandiTable rows={mandiRows} />
+          <div className="section-heading"><div><span className="eyebrow">01 / Market watch</span><h2>Mandi price comparison</h2><p>Tamil Nadu districts · Prices in ₹ (INR) per quintal, updated daily.</p></div><span className="section-tag">3 crops · 3 districts</span></div>
+          <div className="table-scroll" role="region" aria-label="Mandi price comparison" tabIndex="0"><MandiTable rows={mandiRows} /></div>
         </section>
 
         <section id="crop-profiles">
-          <h2>Crop Profiles</h2>
+          <div className="section-heading"><div><span className="eyebrow">02 / Know your crop</span><h2>Good harvests start here.</h2></div><p>Crop profiles for your next growing season.</p></div>
 
           <div className="crop-grid">
             {cropData.map((crop) => (
@@ -279,23 +293,24 @@ function App() {
         </section>
 
         <section id="gallery">
-          <h2>Field Gallery</h2>
+          <div className="section-heading"><div><span className="eyebrow">03 / Life on the land</span><h2>Field gallery</h2></div><p>A closer look at the roots of our work.</p></div>
           <div className="gallery-row">
-            {galleryImages.map((image) => (
+            {galleryImages.map((image, index) => (
               <a key={image.alt} href={image.href} target="_blank" rel="noreferrer">
-                <img className="gallery-img" src={image.src} alt={image.alt} width="300" height="200" />
+                <img className="gallery-img" src={image.src.replace("w=300", "auto=format&fit=crop&w=1000&q=80")} alt={image.alt} width="600" height="360" loading="lazy" /><span className="gallery-caption"><span><small>FIELD NOTE / 0{index + 1}</small>{image.alt}</span><span aria-hidden="true">↗</span></span>
               </a>
             ))}
           </div>
         </section>
 
         <section id="booking-form" className="content-card booking-block">
-          <h2>Book Cold Storage Space</h2>
+          <div className="booking-intro"><span className="eyebrow">04 / Protect your produce</span><h2>A little planning.<br />A fresher harvest.</h2><h3>Book Cold Storage Space</h3>
           <p>
             Reserve cold-storage capacity for your produce ahead of harvest. Fill in the quantity,
             duration, and district — our team confirms availability at the nearest facility within 24 hours.
           </p>
 
+          <div className="booking-note"><span aria-hidden="true">↗</span><p>Plan ahead of harvest.<br /><strong>Confirmation within 24 hours.</strong></p></div></div>
           <form className="cold-storage-form" onSubmit={handleSubmit}>
             <fieldset>
               <legend>Cold Storage Requirement</legend>
@@ -412,21 +427,21 @@ function App() {
               {submitting ? 'Submitting\u2026' : 'Request Cold Storage Slot'}
             </button>
             {submitted && (
-              <p className="success-message">
+              <p className="success-message" role="status">
                 Your cold storage request has been recorded successfully.
                 {createdId ? ` (Booking ID: ${createdId})` : ''}
               </p>
             )}
-            {submitError && <p className="error-message">{submitError}</p>}
+            {submitError && <p className="error-message" role="alert">{submitError}</p>}
           </form>
         </section>
 
         <section id="downloads" className="content-card">
-          <h2>Resources</h2>
+          <div><span className="eyebrow">Keep informed</span><h2>Resources for the road ahead.</h2></div>
           <ul>
             <li>
               <a href="https://www.commodityonline.com/mandiprices/state/tamil-nadu" target="_blank" rel="noreferrer">
-                Mandi Price Report
+                Mandi Price Report <span aria-hidden="true">↗</span>
               </a>
             </li>
           </ul>
@@ -435,7 +450,7 @@ function App() {
 
       <a href="#weather-alert" className="back-to-top">↑ Top</a>
 
-      <footer className="site-footer">
+      <footer className="site-footer"><div className="footer-brand">Kisan Setu<span>Direct Agriculture Intelligence &amp; Market Access Portal</span></div>
         <p>Last updated: {formattedDate} at {formattedTime}</p>
         <p>
           © 2026 Kisan Setu™. All rights reserved. | Registered mark ® Kisan Setu Agricultural Services |

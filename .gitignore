@@ -4,6 +4,12 @@ backend/target
 .vite
 .DS_Store
 
+# Local workspace / generated report assets
+.freebuff/
+.idea/
+*.iml
+docs/screenshots/
+
 # Local secrets / environment files - never commit credentials
 .env
 .env.*
